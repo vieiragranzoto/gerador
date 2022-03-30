@@ -1,5 +1,6 @@
 @extends('layout')
 @push('styles')
+    <link rel="stylesheet" href="{{ URL::asset('css/layout.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/index.css') }}">
 @endpush
 @section('titulo')

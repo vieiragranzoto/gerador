@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\GeradorController;
+use App\Http\Controllers\GerarNumeroController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,11 +19,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/gerador', [\App\Http\Controllers\GeradorController::class, 'index']);
+Route::get('/gerador', [GeradorController::class, 'index']);
 Route::prefix('gerador')->group(function (){
-    Route::post('gerar-nome', 'GerarNomeController@create')->name('nome');
-    Route::post('gerar-gametag', 'GerarGametagController@create')->name('gametag');
-    Route::post('gerar-numero', 'GerarNumeroController@create')->name('numero');
-    Route::get('verificar-historico', 'VerificarHistoricoController@show')->name('verificar');
+    Route::get('gerar-nome', [GerarNomeController::class, 'create'])->name('nome');
+
+    Route::get('gerar-gametag', [GerarGametagController::class,'create'])->name('gametag');
+
+    Route::get('gerar-numero', [GerarNumeroController::class,'create'])->name('numero');
+    Route::get('gerar-numero/resultado', [GerarNumeroController::class, 'show'])->name('mostrar-numero');
+
+    Route::get('verificar-historico', [VerificarHistoricoController::class, 'show'])->name('verificar');
 });
 
